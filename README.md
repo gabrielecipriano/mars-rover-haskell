@@ -1,83 +1,56 @@
-# Hello World
+# The Mars Rover Kata
 
-The classical introductory exercise. Just say "Hello, World!".
+## Problem
 
-["Hello, World!"](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program) is
-the traditional first program for beginning programming in a new language
-or environment.
+A squad of robotic rovers are to be landed by NASA on a plateau on Mars. 
+This plateau, which is curiously rectangular, must be navigated by the 
+rovers so that their on-board cameras can get a complete view of the 
+surrounding terrain to send back to Earth.
 
-The objectives are simple:
+A rover's position and location is represented by a combination of x 
+and y co-ordinates and a letter representing one of the four cardinal 
+compass points. The plateau is divided up into a grid to simplify 
+navigation. An example position might be 0, 0, N, which means the 
+rover is in the bottom left corner and facing North.
 
-- Write a function that returns the string "Hello, World!".
-- Run the test suite and make sure that it succeeds.
-- Submit your solution and check it at the website.
+In order to control a rover, NASA sends a simple string of letters. 
+The possible letters are 'L', 'R' and 'M'. 'L' and 'R' makes the 
+rover spin 90 degrees left or right respectively, without moving 
+from its current spot. 'M' means move forward one grid point, and 
+maintain the same heading.
 
-If everything goes well, you will be ready to fetch your first real exercise.
+Assume that the square directly North from (x, y) is (x, y+1).
 
-## Hints
+### INPUT:
 
-To complete this exercise, you need to implement the `hello` function.
+The first line of input is the upper-right coordinates of the plateau, 
+the lower-left coordinates are assumed to be 0,0.
 
-You will find the type signature for `hello` already in place,
-but it is up to you to define the function.
+The rest of the input is information pertaining to the rovers that have 
+been deployed. Each rover has two lines of input. The first line gives 
+the rover's position, and the second line is a series of instructions 
+telling the rover how to explore the plateau.  The position is made up 
+of two integers and a letter separated by spaces, corresponding to the 
+x and y co-ordinates and the rover's orientation.
 
+Each rover will be finished sequentially, which means that the second 
+rover won't start to move until the first one has finished moving.
 
+### OUTPUT:
 
-## Getting Started
+The output for each rover should be its final co-ordinates and heading.
 
-For installation and learning resources, refer to the
-[exercism help page](http://exercism.io/languages/haskell).
+### EXAMPLE:
 
-## Running the tests
+##### Test Input:
 
-To run the test suite, execute the following command:
+    5 5
+    1 2 N
+    LMLMLMLMM
+    3 3 E
+    MMRMMRMRRM
 
-```bash
-stack test
-```
+##### Expected Output:
 
-#### If you get an error message like this...
-
-```
-No .cabal file found in directory
-```
-
-You are probably running an old stack version and need
-to upgrade it.
-
-#### Otherwise, if you get an error message like this...
-
-```
-No compiler found, expected minor version match with...
-Try running "stack setup" to install the correct GHC...
-```
-
-Just do as it says and it will download and install
-the correct compiler version:
-
-```bash
-stack setup
-```
-
-## Running *GHCi*
-
-If you want to play with your solution in GHCi, just run the command:
-
-```bash
-stack ghci
-```
-
-## Feedback, Issues, Pull Requests
-
-The [exercism/haskell](https://github.com/exercism/haskell) repository on
-GitHub is the home for all of the Haskell exercises.
-
-If you have feedback about an exercise, or want to help implementing a new
-one, head over there and create an issue.  We'll do our best to help you!
-
-## Source
-
-This is an exercise to introduce users to using Exercism [http://en.wikipedia.org/wiki/%22Hello,_world!%22_program](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program)
-
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.
+    1 3 N
+    5 1 E
