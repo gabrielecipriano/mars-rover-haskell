@@ -10,9 +10,13 @@ newtype Position = Position (Int, Int)
 data Direction = N | E | S | W
     deriving (Show, Eq)
 
-moveRover :: (Position, Direction) -> String -> (Position, Direction)
+newtype Rover = Rover (Position, Direction)
+    deriving (Show, Eq)
+
+moveRover :: Rover -> String -> Rover
 moveRover rover _ = rover
 
 specs :: Spec
 specs = it "should leave a rover where it is with no commands" $
-        moveRover (Position (0, 0), N) "" `shouldBe` (Position (0, 0), N)
+        let rover = Rover (Position (0, 0), N)
+        in moveRover rover "" `shouldBe` rover 
