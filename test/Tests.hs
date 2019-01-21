@@ -1,22 +1,32 @@
-import Test.Hspec        (Spec, it, shouldBe)
+import Test.Hspec        (Spec, it, shouldBe, describe)
 import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
 
 main :: IO ()
 main = hspecWith defaultConfig {configFastFail = True} specs
 
-newtype Position = Position (Int, Int)
+data Position = Position (Int, Int)
     deriving (Show, Eq)
 
 data Direction = N | E | S | W
     deriving (Show, Eq)
 
-newtype Rover = Rover (Position, Direction)
+data Rover = Rover (Position, Direction)
     deriving (Show, Eq)
 
 moveRover :: Rover -> String -> Rover
+moveRover (Rover (Position (0,0),  N)) "R" = Rover(Position(0,0), E) 
 moveRover rover _ = rover
 
 specs :: Spec
-specs = it "should leave a rover where it is with no commands" $
-        let rover = Rover (Position (0, 0), N)
-        in moveRover rover "" `shouldBe` rover 
+specs =
+    describe "Mars Rover" $ do
+        it "should leave a rover where it is with no commands" $
+            let rover = Rover (Position (0, 0), N)
+            in moveRover rover "" `shouldBe` rover 
+
+        it "should be facing east when turned once right from North" $ 
+            let
+                rover = Rover (Position (0, 0), N)
+                expectedRover = Rover (Position (0, 0), E)
+         
+            in moveRover rover "R" `shouldBe` expectedRover 
