@@ -14,8 +14,11 @@ data Rover = Rover (Position, Direction)
     deriving (Show, Eq)
 
 moveRover :: Rover -> String -> Rover
-moveRover (Rover (Position (0,0),  N)) "R" = Rover(Position(0,0), E) 
+moveRover (Rover (Position (0,0), direction)) "R" = Rover(Position(0,0), turnRight direction) 
 moveRover rover _ = rover
+
+turnRight :: Direction -> Direction
+turnRight N = E
 
 specs :: Spec
 specs =
