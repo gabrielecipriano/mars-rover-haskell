@@ -2,9 +2,6 @@ import Test.Hspec        (Spec, it, shouldBe, describe)
 import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
 import Data.List
 
-main :: IO ()
-main = hspecWith defaultConfig {configFastFail = True} specs
-
 data Position = Position (Int, Int)
     deriving (Show, Eq)
 
@@ -23,6 +20,9 @@ turnRight direction = cycled !! (index + 1)
     where 
         Just index = elemIndex direction cycled 
         cycled =  [N,E,S,W,N] 
+
+main :: IO ()
+main = hspecWith defaultConfig {configFastFail = True} specs
 
 specs :: Spec
 specs =
